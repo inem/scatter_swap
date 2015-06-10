@@ -30,7 +30,7 @@ module ScatterSwap
     # We want a unique map for each place in the original number
     def swapper_map(index)
       array = (0..9).to_a
-      10.times.collect.with_index do |i|
+      10.times.collect.each_with_index do |i|
         array.rotate!(index + i ^ spin).pop
       end
     end
@@ -38,14 +38,14 @@ module ScatterSwap
     # Using a unique map for each of the ten places,
     # we swap out one number for another
     def swap
-      @working_array = @working_array.collect.with_index do |digit, index|
+      @working_array = @working_array.collect.each_with_index do |digit, index|
         swapper_map(index)[digit]
       end
     end
 
     # Reverse swap
     def unswap
-      @working_array = @working_array.collect.with_index do |digit, index|
+      @working_array = @working_array.collect.each_with_index do |digit, index|
         swapper_map(index).rindex(digit)
       end
     end
